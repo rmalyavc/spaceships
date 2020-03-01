@@ -1,4 +1,5 @@
 <?php
+require_once "./classes/Base.class.php";
 
 class BaseController extends Base {
 	public function __construct() {
@@ -7,12 +8,13 @@ class BaseController extends Base {
 	}
 
 	public function create_view() {
-		$view_name "{$this->name}View";
+		$view_name = "{$this->name}View";
 		$require_path = "views/{$view_name}.class.php";
 		
 		if (file_exists($require_path)) {
 			require_once $require_path;
-			return new $view_name($this->name);
+			$Index_view = new $view_name();
+			return new $view_name();
 		}
 		else {
 			$this->errors[] = '404';
